@@ -1,36 +1,163 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next.js Auth0 Role-Based Authentication Demo
 
-## Getting Started
+This demo project showcases role-based authentication and authorization using Next.js 15 (App Router) and Auth0. It demonstrates how to implement protected routes, admin-only pages, and secured API endpoints.
 
-First, run the development server:
+## Features
+
+- 🔐 Auth0 Authentication
+- 👥 Role-Based Access Control (RBAC)
+- 🚀 Next.js 15 App Router
+- 🔒 Protected API Routes
+- 🎨 Styled with Tailwind CSS
+
+## Demo Pages
+
+- **Public Home Page**: Accessible to all users
+- **Protected Page**: Requires authentication
+- **Admin Dashboard**: Only accessible to users with admin role
+- **API Examples**:
+  - Public endpoint (`/api/public`)
+  - Protected endpoint (`/api/admin`) - requires admin role
+
+## Setup
+
+1. **Sign up for Auth0**
+
+Visit [Auth0 Signup](https://auth0.com/signup?utm_source=sonny&utm_medium=social) to create an account for FREE!
+
+2. **Clone the repository**
+
+```bash
+git clone <repository-url>
+cd next-auth0-rbac-demo
+```
+
+3. **Install dependencies**
+
+```bash
+npm install
+```
+
+4. **Configure Auth0**
+
+Create an Auth0 application and API, then set up the following environment variables in `.env.local`:
+
+```env
+AUTH0_SECRET='use [openssl rand -hex 32] to generate a 32 bytes value'
+AUTH0_BASE_URL='http://localhost:3000'
+AUTH0_ISSUER_BASE_URL='https://YOUR_AUTH0_DOMAIN'
+AUTH0_CLIENT_ID='YOUR_CLIENT_ID'
+AUTH0_CLIENT_SECRET='YOUR_CLIENT_SECRET'
+AUTH0_DOMAIN='YOUR_AUTH0_DOMAIN'
+```
+
+5. **Set up Auth0 Roles**
+
+In your Auth0 dashboard:
+
+- Create an 'admin' role
+- Assign the role to test users
+- Configure the API permissions
+
+6. **Run the development server**
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Project Structure
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+├── app/
+│   ├── api/              # API routes
+│   │   ├── protected/    # Admin-only endpoints
+│   │   └── public/       # Public endpoints
+│   ├── page.tsx         # Home page component
+│   ├── admin/           # Admin dashboard page
+│   │   └── page.tsx     # Admin dashboard component
+│   └── logged-in/       # Logged-in user pages
+│       └── page.tsx     # Logged-in user component
+├── actions/             # Server actions
+├── components/          # React components
+├── lib/                 # Utility functions
+└── middleware.ts        # Auth & CORS middleware
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Authentication Flow
 
-## Learn More
+1. Users log in via Auth0
+2. Auth0 returns user profile and tokens
+3. Server validates tokens, generates a access token and checks user roles
+4. Access is granted based on user roles
 
-To learn more about Next.js, take a look at the following resources:
+## API Routes
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Public Endpoint
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```typescript
+GET / api / public;
+// Accessible to all users
+```
 
-## Deploy on Vercel
+### Protected Admin Endpoint
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```typescript
+GET / api / protected;
+// Requires valid Auth0 token and admin role
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Level Up Your Dev Career 🚀
+
+🔥 Want to earn $120k+/year as a developer? Our 1000+ students already are! Transform your career with the most comprehensive full-stack development program available!
+
+[Join Zero to Full Stack Hero 2.0 today!](https://www.papareact.com/course)
+
+### Why Join Zero to Full Stack Hero 2.0?
+
+- 🎓 **Complete Full-Stack Curriculum**
+
+  - Next.js 15, React, TypeScript, Tailwind CSS
+  - Backend development with Node.js
+  - Database management
+  - Authentication & Authorization (like this demo!)
+  - AI & SaaS modules
+  - Lifetime access
+  - Weekly coaching calls
+  - Complete project source code
+  - Exclusive Discord community
+  - So much more!
+
+- 👨‍🏫 **Live Coaching & Support**
+
+  - Weekly live sessions with Sonny Sangha
+  - Real-time problem solving
+  - Code reviews
+  - Career guidance
+  - Interview preparation
+
+- 💪 **Real-World Experience**
+
+  - 50+ practical projects
+  - 100+ coding challenges
+  - Industry-standard practices
+  - Portfolio building
+
+- 🤝 **Active Developer Community**
+  - 24/7 support in Discord
+  - Networking opportunities
+  - Code reviews
+  - Accountability partners
+  - Job opportunities
+
+### Success Stories
+
+- Developers landing $120k+ positions at PayPal
+- Students securing remote work opportunities worldwide
+- Career changers breaking into tech
+- Freelancers starting successful businesses
+
+[Join Zero to Full Stack Hero 2.0 Today!](https://www.papareact.com/course)
+
+> "The best investment in my development career" - Frank Ramos, Harvard Graduate & Senior Developer
+
+_This project is part of the Zero to Full Stack Hero 2.0 curriculum, showcasing advanced authentication patterns with Next.js and Auth0._
